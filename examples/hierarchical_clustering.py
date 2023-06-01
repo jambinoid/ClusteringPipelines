@@ -98,7 +98,7 @@ def main(config: dict):
     dataset_loaders = [
         get_text_dataset_loader(loader_name, loader_params)
         for loader_config in dataset_loaders_config
-        for loader_name, loader_params in loader_config
+        for loader_name, loader_params in loader_config.items()
     ]
 
     # Get encoders
