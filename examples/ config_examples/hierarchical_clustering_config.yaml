@@ -1,0 +1,16 @@
+dataset_loaders:
+  - BBCNewsLoader:
+      remove: title
+      name: bbc_news
+
+encoders:
+  USE: {}
+
+hac:
+  methods: [ward]
+  metrics: [euclidean]
+  criterions: [quadratic, exponential]
+  n_nodes: [3, 4, 5]
+
+batch_size: 256
+output_dir: ./
