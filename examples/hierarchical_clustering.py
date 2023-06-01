@@ -12,14 +12,14 @@ import yaml
 
 from clustering_pipelines.analysis.markov_moment import get_stability_segments
 from clustering_pipelines.encoders.use import USE
-from clustering_pipelines.encoders.bert import BERT
+from clustering_pipelines.encoders.bert import SmallBERT
 from clustering_pipelines.dataset_loaders import get_text_dataset_loader
 
 
 def get_encoder(encoder_name: str, **kwargs):
     encoders = {
         "USE": USE(**kwargs),
-        "BERT": BERT(**kwargs),
+        "SmallBERT": SmallBERT(**kwargs),
         "all-MiniLM-L6-v2": SentenceTransformer(
             "all-MiniLM-L6-v2", **kwargs),
         "all-distilroberta-v1": SentenceTransformer(
