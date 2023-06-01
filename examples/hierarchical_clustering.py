@@ -96,14 +96,14 @@ def main(config: dict):
 
     # Get text dataset loader
     dataset_loaders = [
-        get_text_dataset_loader(loader_name, loader_params)
+        get_text_dataset_loader(loader_name, **loader_params)
         for loader_config in dataset_loaders_config
         for loader_name, loader_params in loader_config.items()
     ]
 
     # Get encoders
     encoders = {
-        encoder_name:get_encoder(encoder_name, params)
+        encoder_name:get_encoder(encoder_name, **params)
         for encoder_config in encoders_config
         for encoder_name, params in encoder_config.items()
     }
