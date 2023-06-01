@@ -1,10 +1,10 @@
 dataset_loaders:
-  - BBCNewsLoader:
-      remove: title
-      name: bbc_news
+- BBCNewsLoader:
+    remove: title
+    name: bbc_news
 
 encoders:
-  USE: {}
+- USE: {}
 
 hac:
   methods: [ward]
