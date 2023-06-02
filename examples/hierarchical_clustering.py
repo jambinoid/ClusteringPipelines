@@ -122,7 +122,7 @@ def main(config: dict):
                     X = embeddings
                 else:
                     reducer = umap.UMAP(**umap_params)
-                    X = reducer(embeddings)
+                    X = reducer.fit_transform(embeddings)
                 for metric in hac_metrics_config:
                     for method in hac_methods_config:
                         L = hierarchy.linkage(X, method=method, metric=metric)

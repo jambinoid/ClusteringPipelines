@@ -91,7 +91,7 @@ def main(config: dict):
                     X = embeddings
                 else:
                     reducer = umap.UMAP(**umap_params)
-                    X = reducer(embeddings)
+                    X = reducer.fit_transform(embeddings)
 
                     labels, dbcv, params = cluster(embeddings=X, grid=grid)
                     
