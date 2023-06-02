@@ -135,7 +135,7 @@ def main(config: dict):
                             n_nodes_list=hac_n_nodes_list
                         )
 
-                        # Save result for clustering
+                        # Save result of clustering
                         dir = os.path.join(
                             output_dir,
                             dataset_loader.name,

@@ -1,0 +1,23 @@
+dataset_loaders:
+- BBCNewsLoader:
+    remove: title
+    name: bbc_news
+
+encoders:
+- USE: {}
+
+umap:
+- min_dist: 0.1
+  n_neighbors: 15
+  n_components: 2
+  metric: cosine
+  verbose: True
+  random_state: 21
+
+hbscan_cv_params:
+  min_samples: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  min_cluster_size: [20, 40, 60, 80]
+  cluster_selection_method: [eom, leaf]
+
+batch_size: 256
+output_dir: ./
