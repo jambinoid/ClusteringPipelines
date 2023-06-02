@@ -7,6 +7,22 @@ from clustering_pipelines.dataset_loaders import DatasetLoader
 from clustering_pipelines.utils.dataset_utils import load_and_extract
 
 
+def get_text_dataset_loader(loader_name: str, **kwargs) -> DatasetLoader:
+    datasets_loaders = {
+        "AGNewsLoader": AGNewsLoader,
+        "BBCNewsLoader": BBCNewsLoader,
+        "NewsgroupsLoader": NewsgroupsLoader,
+        "TwitterSummarizationLoader": TwitterSummarizationLoader
+    }
+
+    if loader_name not in datasets_loaders:
+        raise ValueError(
+            f"Specified wrong loader name {loader_name}, should be one of:" +
+            "\n    ".dataset_loaders.keys())
+    
+    return datasets_loaders[loader_name](**kwargs)
+
+
 class AGNewsLoader(DatasetLoader):
     """
     Loader for AG News dataset:
@@ -142,7 +158,7 @@ class NewsgroupsLoader(DatasetLoader):
         return texts, classes
     
 
-class TwitterSummarization(DatasetLoader):
+class TwitterSummarizationLoader(DatasetLoader):
     """
     Loader for TwitterSummarization dataset:
     https://github.com/cocoxu/twittersummarization.git

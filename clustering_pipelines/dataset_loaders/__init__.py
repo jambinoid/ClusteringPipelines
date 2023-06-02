@@ -63,3 +63,7 @@ class DatasetLoader(ABC):
             self.path.mkdir(parents=True, exist_ok=True)
             self._load()
         return self._parse()
+
+
+# TODO: move `DatasetLoader` into separate method and import here
+from .text_datasets_loaders import get_text_dataset_loader
