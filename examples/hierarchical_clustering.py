@@ -112,7 +112,7 @@ def main(config: dict):
     for dataset_loader in dataset_loaders:
         texts, labels = dataset_loader()
         for encoder_name, encoder in encoders.items():
-            embeddings = encoder(texts, batch_size=batch_size)
+            embeddings = encoder.encode(texts, batch_size=batch_size)
             for umap_params in umap_config:
                 if umap_params is None:
                     X = embeddings
