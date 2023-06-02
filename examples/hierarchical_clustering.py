@@ -61,7 +61,12 @@ def get_metrics_per_stability_segment(
             completenesses = list()
             v_measures = list()
             for k in populations:
-                cluster_labels = hierarchy.fcluster(linkage_matrix, t=k, criterion="maxclust_monocrit", monocrit=np.arange(len(L), dtype="double"))
+                cluster_labels = hierarchy.fcluster(
+                    linkage_matrix,
+                    t=k,
+                    criterion="maxclust_monocrit",
+                    monocrit=np.arange(len(linkage_matrix), dtype="double")
+                )
                 homogeneity, completeness, v_measure = homogeneity_completeness_v_measure(y_true, cluster_labels)
                 silhouette_scores.append(silhouette_score(X, cluster_labels, metric=metric))
                 homogeneities.append(homogeneity)
