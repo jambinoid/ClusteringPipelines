@@ -151,7 +151,6 @@ def main(config: dict):
                            writer = csv.writer(csv_file)
                            writer.writerow(results_table.keys())
                            writer.writerows(zip(*results_table.values()))
-                           writer.flush()
 
 
 if __name__ == "__main__":
