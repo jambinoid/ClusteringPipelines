@@ -1,3 +1,4 @@
+# Usage: DATASETS_CACHE_DIR=<cache_dir> python hdbscan_grid_search.py -c config_examples/hdbscan_grid_search_config.yaml
 import argparse
 import csv
 import os
@@ -84,6 +85,7 @@ def main(config: dict):
     # Perform clustering
     for dataset_loader in dataset_loaders:
         texts, y_true = dataset_loader()
+        y_true = np.array(y_true)
         for encoder_name, encoder in encoders.items():
             embeddings = encoder.encode(texts, batch_size=batch_size)
             for umap_params in umap_config:
@@ -121,7 +123,7 @@ def main(config: dict):
                         dataset_loader.name,
                         encoder_name,
                         "no_umap" if umap_params is None
-                        else "umap" + "_".join(umap_config.values()) 
+                        else "umap" + "_".join(umap_params.values()) 
                     )
                     os.makedirs(dir, exist_ok=True)
                     csv_path = os.path.join(dir, f"HDBSCAN-metrics.csv")

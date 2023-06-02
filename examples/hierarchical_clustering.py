@@ -1,3 +1,4 @@
+# Usage: DATASETS_CACHE_DIR=<cache_dir> python hierarchical_clustering.py -c config_examples/hierarchical_clustering_config.yaml
 import argparse
 import csv
 import os
@@ -141,7 +142,7 @@ def main(config: dict):
                             dataset_loader.name,
                             encoder_name,
                             "no_umap" if umap_params is None
-                            else "umap" + "_".join(umap_config.values()) 
+                            else "umap" + "_".join(umap_params.values()) 
                         )
                         os.makedirs(dir, exist_ok=True)
                         csv_path = os.path.join(
