@@ -11,27 +11,26 @@ import umap
 import yaml
 
 from clustering_pipelines.analysis.markov_moment import get_stability_segments
+from clustering_pipelines.encoders import Encoder
 from clustering_pipelines.encoders.use import USE
 from clustering_pipelines.encoders.bert import SmallBERT
 from clustering_pipelines.dataset_loaders import get_text_dataset_loader
 
 
-def get_encoder(encoder_name: str, **kwargs):
+def get_encoder(encoder_name: str, **kwargs) -> Encoder | SentenceTransformer:
     encoders = {
-        "USE": USE(**kwargs),
-        "SmallBERT": SmallBERT(**kwargs),
-        "all-MiniLM-L6-v2": SentenceTransformer(
-            "all-MiniLM-L6-v2", **kwargs),
-        "all-distilroberta-v1": SentenceTransformer(
-            "all-distilroberta-v1", **kwargs)
+        "USE": USE,
+        "SmallBERT": SmallBERT,
+        "SentenceTransformer": SentenceTransformer
     }
+
 
     if encoder_name not in encoders:
         raise ValueError(
             f"Specified wrong encoder {encoder_name}, should be one of:" +
             "\n    ".dataset_loaders.keys())
     
-    return encoders[encoder_name]
+    return encoders[encoder_name](**kwargs)
 
 
 def get_metrics_per_stability_segment(
