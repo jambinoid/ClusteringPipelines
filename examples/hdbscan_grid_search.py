@@ -123,14 +123,15 @@ def main(config: dict):
                         dataset_loader.name,
                         encoder_name,
                         "no_umap" if umap_params is None
-                        else "umap" + "_".join(umap_params.values()) 
+                        else "umap" + "_".join(
+                            map(str, umap_params.values()))
                     )
                     os.makedirs(dir, exist_ok=True)
                     csv_path = os.path.join(dir, f"HDBSCAN-metrics.csv")
                     with open(csv_path, "w") as csv_file:
                        writer = csv.writer(csv_file)
                        writer.writerow(results_table.keys())
-                       writer.writerows(zip(*results_table.values()))
+                       writer.writerow(results_table.values())
 
 
 if __name__ == "__main__":

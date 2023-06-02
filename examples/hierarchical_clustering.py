@@ -142,7 +142,8 @@ def main(config: dict):
                             dataset_loader.name,
                             encoder_name,
                             "no_umap" if umap_params is None
-                            else "umap" + "_".join(umap_params.values()) 
+                            else "umap" + "_".join(
+                                map(str, umap_params.values()))
                         )
                         os.makedirs(dir, exist_ok=True)
                         csv_path = os.path.join(
